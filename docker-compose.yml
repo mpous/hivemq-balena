@@ -1,0 +1,28 @@
+version: '2.1'
+
+services:
+  data-generators:
+    build:
+      context: .
+      dockerfile: generator_simulator/Dockerfile.template
+    environment:
+      - GENERATORS=3
+      - BROKER=hivemq
+    networks:
+      - mqtt
+    depends_on:
+      - "hivemq"
+  
+  hivemq:
+    image: hivemq/hivemq-ce:snapshot
+    ports:
+      - 1883:1883 # MQTT/TCP protocol port
+      - 8081:8080
+    environment:
+      JAVA_OPTS: "-XX:+UnlockExperimentalVMOptions -XX:InitialRAMPercentage=30 -XX:MaxRAMPercentage=80 -XX:MinRAMPercentage=30"
+    networks:
+      - mqtt
+
+networks: 
+  mqtt:
+

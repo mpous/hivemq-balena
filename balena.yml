@@ -1,0 +1,21 @@
+name: HiveMQ CE
+description: >-
+  HiveMQ Community Edition MQTT broker running on balena with a fake data generator.
+joinable: false
+# By default post-provisioning is overwritten by the deploy-to-balena GitHub action to match README.md
+post-provisioning: Click 'View code' to see the README.
+type: sw.application
+assets:
+  repository:
+    type: blob.asset
+    data:
+      url: "https://github.com/mpous/hivemq-balena"
+  logo:
+    type: blob.asset
+    data:
+      url: 'https://raw.githubusercontent.com/mpous/hivemq-balena/master/logo.png'
+data:
+  defaultDeviceType: genericx86-64-ext
+  supportedDeviceTypes:
+    - genericx86-64-ext
+    - intel-nuc
